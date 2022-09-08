@@ -3,6 +3,9 @@ package javarush.criptoanalizer;
 import javarush.criptoanalizer.IO.DownloadAlphabet;
 import javarush.criptoanalizer.data.Key;
 import javarush.criptoanalizer.data.MapAllLanguage;
+import javarush.criptoanalizer.data.TextEncoded;
+import javarush.criptoanalizer.data.TextNotEncoded;
+import javarush.criptoanalizer.util.CipherByCaesar;
 
 
 import java.io.IOException;
@@ -23,5 +26,9 @@ public class Runner {
         int key = scannerConsole.nextInt();   //make a key check throws IOException
         Key keyCode  = new Key(key); //make a key check throws IOException
         //метод запускаем кодирования с параметром Кей
+        TextEncoded textEncoder = new TextEncoded();
+        TextNotEncoded textNotEncoder = new TextNotEncoded();
+        CipherByCaesar cipherByCaesar = new CipherByCaesar(textNotEncoder,textEncoder,alphabetRus,keyCode);
+        cipherByCaesar.encrypt(cipherByCaesar);
     }
 }

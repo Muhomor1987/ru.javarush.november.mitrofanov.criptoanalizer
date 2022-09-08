@@ -1,5 +1,9 @@
 package javarush.criptoanalizer.data;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,8 +18,10 @@ HashMap<String, Alphabet> mapAllLanguage;  //Map of language
     }
     //Get the language from the map
     public static class Alphabet {
+        File alphabet = new File("D:\\ProjectMy\\ru.javarush.november.mitrofanov.criptoanalizer\\src\\main\\java\\javarush\\criptoanalizer\\files\\RUS_Alphabet.txt");
         String languageCut; //Use language name to reduce
         ArrayList<Character> charAlphabet; //Values for list of characters
+        int length=0;
 
 
 
@@ -25,6 +31,17 @@ HashMap<String, Alphabet> mapAllLanguage;  //Map of language
         }
         //Constructor for Alphabet
 
+        public ArrayList<Character> alphabetToArray() throws IOException {      //can be converted into a separate method for reading files
+            try(BufferedReader textReader = new BufferedReader(new FileReader(alphabet))) {
+                while (textReader.ready()) {
+                    charAlphabet.add((char) textReader.read());
+                }
+            }
+            return charAlphabet;
+        }
+        public int length(Alphabet alphabet) throws IOException {
+            return alphabet.alphabetToArray().size();
+        }
 
     }
 }
