@@ -8,7 +8,7 @@ public class DownloadAlphabet  {
     //Create path to file
     ArrayList<Character> letters = new ArrayList<Character>();
     //Create list of characters
-    public ArrayList<Character> alphabetCreate() throws IOException {
+    public ArrayList<Character> alphabetCreate() throws IOException {  //can be converted into a separate method for reading files
         try(BufferedReader alphabetReader = new BufferedReader(new FileReader(alphabetText))) {
             while (alphabetReader.ready()) {
                     letters.add((char) alphabetReader.read());

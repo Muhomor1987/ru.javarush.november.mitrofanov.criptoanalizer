@@ -1,11 +1,12 @@
 package javarush.criptoanalizer;
 
 import javarush.criptoanalizer.IO.DownloadAlphabet;
+import javarush.criptoanalizer.data.Key;
 import javarush.criptoanalizer.data.MapAllLanguage;
 
 
 import java.io.IOException;
-
+import java.util.Scanner;
 
 
 public class Runner {
@@ -17,6 +18,10 @@ public class Runner {
         //mapAllLanguage.alphabetAdd(alphabetRus);     //don`t work                      //add alphabet to alphabet map
         //System.out.println(mapAllLanguage.alphabetGet("RUS"));      //get alphabet from alphabet mapAllLanguage
         //Сan add other languages and language recognition...
-
+        System.out.println("Введите значения ключа для шифорвания: ");
+        Scanner scannerConsole = new Scanner(System.in);
+        int key = scannerConsole.nextInt();   //make a key check throws IOException
+        Key keyCode  = new Key(key); //make a key check throws IOException
+        //метод запускаем кодирования с параметром Кей
     }
 }
