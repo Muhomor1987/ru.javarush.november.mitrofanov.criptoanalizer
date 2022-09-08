@@ -11,7 +11,7 @@ public class TextNotEncoded {
     //Create path to file
     ArrayList<Character> letters = new ArrayList<Character>();
     //Create list of characters
-    public ArrayList<Character> textNotEncoderArray() throws IOException {      //can be converted into a separate method for reading files
+    public ArrayList<Character> textNotEncoderToArray() throws IOException {      //can be converted into a separate method for reading files
         try(BufferedReader textReader = new BufferedReader(new FileReader(textNotEncoder))) {
             while (textReader.ready()) {
                 letters.add((char) textReader.read());
