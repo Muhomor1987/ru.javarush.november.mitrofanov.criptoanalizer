@@ -35,7 +35,11 @@ public class CipherByCaesar {
         } else key = cipherByCaesar.key.getKey();
         HashMap<Character, Character> mapAlphabet = new HashMap<Character, Character>();
         for (int i = 0; i < alphabetList.size(); i++) {
-            mapAlphabet.put(alphabetList.get(i), alphabetList.get(i + key));
+
+            if ((i+key)<alphabetList.size()-1) {
+                mapAlphabet.put(alphabetList.get(i), alphabetList.get(i + key));
+            } else {     //mistake //remake!
+            }
         }
         for (Character charText : lettersText
         ) {
@@ -45,7 +49,5 @@ public class CipherByCaesar {
             else lettersEncoder.add(charText);
         }
             cipherByCaesar.textEncoder.writer(lettersEncoder);
-
-
     }
 }

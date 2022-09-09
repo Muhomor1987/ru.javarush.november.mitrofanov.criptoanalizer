@@ -18,7 +18,7 @@ HashMap<String, Alphabet> mapAllLanguage;  //Map of language
     }
     //Get the language from the map
     public static class Alphabet {
-        File alphabet = new File("D:\\ProjectMy\\ru.javarush.november.mitrofanov.criptoanalizer\\src\\main\\java\\javarush\\criptoanalizer\\files\\RUS_Alphabet.txt");
+        File alphabet = new File("D:\\IJ\\ru.javarush.november.mitrofanov.criptoanalizer\\src\\main\\java\\javarush\\criptoanalizer\\files\\RUS_Alphabet.txt");
         String languageCut; //Use language name to reduce
         ArrayList<Character> charAlphabet; //Values for list of characters
         int length=0;

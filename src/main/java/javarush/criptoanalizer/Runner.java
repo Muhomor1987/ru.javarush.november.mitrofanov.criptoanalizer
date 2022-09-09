@@ -26,9 +26,9 @@ public class Runner {
         int key = scannerConsole.nextInt();   //make a key check throws IOException
         Key keyCode  = new Key(key); //make a key check throws IOException
         //метод запускаем кодирования с параметром Кей
-        TextEncoded textEncoder = new TextEncoded();
-        TextNotEncoded textNotEncoder = new TextNotEncoded();
-        CipherByCaesar cipherByCaesar = new CipherByCaesar(textNotEncoder,textEncoder,alphabetRus,keyCode);
-        cipherByCaesar.encrypt(cipherByCaesar);
+        TextEncoded textEncoder = new TextEncoded(); //Create object
+        TextNotEncoded textNotEncoder = new TextNotEncoded();//Create object
+        CipherByCaesar cipherByCaesar = new CipherByCaesar(textNotEncoder,textEncoder,alphabetRus,keyCode);//Create object
+        cipherByCaesar.encrypt(cipherByCaesar); // do method encrypt
     }
 }
