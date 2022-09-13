@@ -29,51 +29,57 @@ public class Runner {
             if (menu.equals("1")) {
                 System.out.println("""
                         Укажите путь к текстовым файлам(.txt),
-                        Скопируйте нужный файл в данную траекторию и назовите его "Encode",
-                        После выполнения программы в файле Decoder.txt в указаной папке появиться рашифрованый текст""");
+                        Скопируйте нужный файл в данную траекторию и назовите его "Decode",
+                        После выполнения программы в файле Encode.txt в указаной папке появиться зашифрованый текст""");
                 String pathStr = scanner.next();
                 try {
-                    File file = new File(pathStr+"Decode.txt");
+                    File file = new File(pathStr + "Encode.txt");
                 } catch (Exception e) {
                     System.out.println("Ошибка создания файла записи");
                 }
-/*                Path path = Path.of(pathStr);
-                Files.createTempFile(,pathStr);*/
-                try (BufferedReader bufferReader = new BufferedReader(new FileReader(pathStr + "Encode.txt"));
-                     BufferedWriter bufferWriter = new BufferedWriter(new FileWriter(pathStr + "Decode.txt"))) {
+                //Decoder
+                try (BufferedReader bufferReader = new BufferedReader(new FileReader(pathStr + "Decode.txt"));
+                     BufferedWriter bufferWriter = new BufferedWriter(new FileWriter(pathStr + "Encode.txt"))) {
                     HashMap<Character, Character> mapAlphabet = new HashMap<>();
                     System.out.println("Введите число для шифорвания");
-                    int key=0;
+                    int key = 0;
                     int attempt = 5;
-                    while (attempt>0) {
+                    while (attempt > 0) {
                         try {
                             key = Integer.parseInt(scanner.next());
-                            if(key<0){
+                            if (key < 0) {
                                 throw new IOException();
                             }
-                            if(key>alphabet.length()){
-                                key = alphabet.length()%key;
+                            if (key > alphabet.length()) {
+                                key = alphabet.length() % key;
                             }
+                            break;
                         } catch (Exception e) {
                             System.out.println("Некорректный ввод данных");
-                            System.out.println("Осталось "+ (attempt-1)+ " попытки");
+                            System.out.println("Осталось " + (attempt - 1) + " попытки");
                             attempt--;
                         }
                     }   //Ввод ключа с клавиатуры
+                    System.out.println("Идёт обработка");
                     for (int i = 0; i < alphabet.length(); i++) {
-                        if ((i+key<alphabet.length())) {
-                            mapAlphabet.put(alphabet.charAt(i),alphabet.charAt(i+key));
+                        if ((i + key < alphabet.length())) {
+                            mapAlphabet.put(alphabet.charAt(i), alphabet.charAt(i + key));
                         } else {
-                            mapAlphabet.put(alphabet.charAt(i),alphabet.charAt((i + key) - alphabet.length()));
+                            mapAlphabet.put(alphabet.charAt(i), alphabet.charAt((i + key) - alphabet.length()));
                         }
 
                     }// Заполнение map алфавита для кодировки по Цезарю
                     //ЗАПИСЫВАЕМ В СТРИГ БИЛДЕР значения буфера считаного текста и сразу обрабатываем строку и записываем в файл
                     StringBuilder stringBuilder = new StringBuilder();
-                    while (bufferReader.ready()){
-                        stringBuilder.append(bufferReader.)
+                    while (bufferReader.ready()) {
+                        char symbol = (char) bufferReader.read();
+                        if (mapAlphabet.containsKey(symbol)) {
+                            stringBuilder.append(mapAlphabet.get(symbol));
+                        } else {
+                            stringBuilder.append(symbol);
+                        }
                     }
-
+                    bufferWriter.append(stringBuilder);
                 } catch (Exception e) {
                     System.out.println("Указаный файл отсутвует по данному адресу");
                 }
@@ -88,34 +94,67 @@ public class Runner {
                         """);
                 String way = scanner.next();
                 if (way.equals("1")) {
-                    //вынести метод в класс
+                    System.out.println("""
+                            Укажите путь к текстовым файлам(.txt),
+                            Скопируйте нужный файл в данную траекторию и назовите его "Encode",
+                            После выполнения программы в файле Decode.txt в указаной папке появиться зашифрованый текст""");
+                    String pathStr = scanner.next();
+                    try {
+                        File file = new File(pathStr + "Decode.txt");
+                    } catch (Exception e) {
+                        System.out.println("Ошибка создания файла записи");
+                    }
+                    //Decoder
+                    try (BufferedReader bufferReader = new BufferedReader(new FileReader(pathStr + "Encode.txt"));
+                         BufferedWriter bufferWriter = new BufferedWriter(new FileWriter(pathStr + "Decode.txt"))) {
+                        HashMap<Character, Character> mapAlphabet = new HashMap<>();
+                        System.out.println("Введите ключ");
+                        int key = 0;
+                        int attempt = 5;
+                        while (attempt > 0) {
+                            try {
+                                key = Integer.parseInt(scanner.next());
+                                if (key < 0) {
+                                    throw new IOException();
+                                }
+                                if (key > alphabet.length()) {
+                                    key = alphabet.length() % key;
+                                }
+                                attempt = 0;
+                            } catch (Exception e) {
+                                System.out.println("Некорректный ввод данных");
+                                System.out.println("Осталось " + (attempt - 1) + " попытки");
+                                attempt--;
+                            }
+                        }   //Ввод ключа с клавиатуры
+                        for (int i = 0; i < alphabet.length(); i++) {
+                            if ((i + key < alphabet.length())) {
+                                mapAlphabet.put(alphabet.charAt(i + key), alphabet.charAt(i));
+                            } else {
+                                mapAlphabet.put(alphabet.charAt((i + key) - alphabet.length()), alphabet.charAt(i));
+                            }
 
+                        }// Заполнение map алфавита для кодировки по Цезарю
+                        //ЗАПИСЫВАЕМ В СТРИГ БИЛДЕР значения буфера считаного текста и сразу обрабатываем строку и записываем в файл
+                        StringBuilder stringBuilder = new StringBuilder();
+                        while (bufferReader.ready()) {
+                            char symbol = (char) bufferReader.read();
+                            if (mapAlphabet.containsKey(symbol)) {
+                                stringBuilder.append(mapAlphabet.get(symbol));
+                            } else {
+                                stringBuilder.append(symbol);
+                            }
+                        }
+                        bufferWriter.append(stringBuilder);
+                    } catch (Exception e) {
+                        System.out.println("Указаный файл отсутвует по данному адресу");
+                    }
                 }
-                if(way.equals("3")) {
+                if (way.equals("3")) {
                     System.out.println("Программа закрыта");
-                    toWork=false;
+                    toWork = false;
                 }
             }
         }
-
-
-
-
-/*        DownloadAlphabet downloadAlphabet = new DownloadAlphabet(); //Creates a new DownloadAlphabet object
-        System.out.println(downloadAlphabet.alphabetCreate());//Check download Alphabet is right
-        MapAllLanguage mapAllLanguage = new MapAllLanguage(); //Creates a new MapAll
-        MapAllLanguage.Alphabet alphabetRus = new MapAllLanguage.Alphabet("RUS",downloadAlphabet.alphabetCreate());
-        //mapAllLanguage.alphabetAdd(alphabetRus);     //don`t work                      //add alphabet to alphabet map
-        //System.out.println(mapAllLanguage.alphabetGet("RUS"));      //get alphabet from alphabet mapAllLanguage
-        //Сan add other languages and language recognition...
-        System.out.println("Введите значения ключа для шифорвания: ");
-        Scanner scannerConsole = new Scanner(System.in);
-        int key = scannerConsole.nextInt();   //make a key check throws IOException
-        Key keyCode  = new Key(key); //make a key check throws IOException
-        //метод запускаем кодирования с параметром Кей
-        TextEncoded textEncoder = new TextEncoded(); //Create object
-        TextNotEncoded textNotEncoder = new TextNotEncoded();//Create object
-        CipherByCaesar cipherByCaesar = new CipherByCaesar(textNotEncoder,textEncoder,alphabetRus,keyCode);//Create object
-        cipherByCaesar.encrypt(cipherByCaesar); // do method encrypt*/
     }
 }
