@@ -1,18 +1,9 @@
 package javarush.criptoanalizer;
 
-import javarush.criptoanalizer.IO.DownloadAlphabet;
-import javarush.criptoanalizer.data.Key;
-import javarush.criptoanalizer.data.MapAllLanguage;
-import javarush.criptoanalizer.data.TextEncoded;
-import javarush.criptoanalizer.data.TextNotEncoded;
-import javarush.criptoanalizer.util.CipherByCaesar;
 
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 
