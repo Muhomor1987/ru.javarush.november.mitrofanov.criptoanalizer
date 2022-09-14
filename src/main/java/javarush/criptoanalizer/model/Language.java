@@ -3,7 +3,7 @@ package javarush.criptoanalizer.model;
 
 import java.util.Scanner;
 
-public class SetLanguage {
+public class Language {
 
 
     String en = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ(.,””:-!? )";
