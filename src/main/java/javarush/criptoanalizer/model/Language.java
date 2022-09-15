@@ -15,11 +15,11 @@ public class Language {
     public String getAlphabet() {
         boolean choseLg = true;
         String language = null;
-        System.out.println("Выберите язык из списка, укажите его номер" +
-                "1 - Английский" +
-                "2 - Русский" +
-                "3 - Украинский" +
-                "4 - Белоруский");
+        System.out.println("Выберите язык из списка, укажите его номер\n" +
+                "1 - Английский\n" +
+                "2 - Русский\n" +
+                "3 - Украинский\n" +
+                "4 - Белоруский\n");
         Scanner scanner = new Scanner(System.in);
         int num = Integer.parseInt(scanner.next());
         while (choseLg) {

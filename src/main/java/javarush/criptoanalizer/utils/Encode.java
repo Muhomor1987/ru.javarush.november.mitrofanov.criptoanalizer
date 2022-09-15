@@ -7,10 +7,12 @@ import java.util.Scanner;
 public class Encode {
     public void encode(String alphabet){
         Scanner scanner = new Scanner(System.in);
-        String pathStr = getString(scanner);
+        String pathStr = getPath(scanner);
         //Decoder
         System.out.println("Введите число для шифорвания");
         int key = scanner.nextInt();
+        KeyHandler keyHandler = new KeyHandler();
+        key = keyHandler.getKey(alphabet, key);
         encode(alphabet, pathStr, key);
 
     }
@@ -19,22 +21,8 @@ public class Encode {
         try (BufferedReader bufferReader = new BufferedReader(new FileReader(pathStr + "Decode.txt"));
              BufferedWriter bufferWriter = new BufferedWriter(new FileWriter(pathStr + "Encode.txt"))) {
             HashMap<Character, Character> mapAlphabet = new HashMap<>();
-            int attempt = 5;
-            while (attempt > 0) {
-                try {
-                    if (key < 0) {
-                        throw new IOException();
-                    }
-                    if (key > alphabet.length()) {
-                        key = alphabet.length() % key;
-                    }
-                    break;
-                } catch (Exception e) {
-                    System.out.println("Некорректный ввод данных");
-                    System.out.println("Осталось " + (attempt - 1) + " попытки");
-                    attempt--;
-                }
-            }   //Ввод ключа с клавиатуры
+
+             //Ввод ключа с клавиатуры
             System.out.println("Идёт обработка");
             for (int i = 0; i < alphabet.length(); i++) {
                 if ((i + key < alphabet.length())) {
@@ -60,7 +48,7 @@ public class Encode {
         }
     }
 
-    private static String getString(Scanner scanner) {
+    private static String getPath(Scanner scanner) {
         System.out.println("""
                         Укажите путь к текстовым файлам(.txt),
                         Скопируйте нужный файл в данную траекторию и назовите его "Decode.txt",

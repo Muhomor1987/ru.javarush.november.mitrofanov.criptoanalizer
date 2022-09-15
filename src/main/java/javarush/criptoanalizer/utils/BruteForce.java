@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class BruteForce {
     public void bruteForceAttack() {
+            Decoder decoder = new Decoder();
 
 
     }

@@ -33,10 +33,14 @@ public class Runner {
                         """);
                 String way = scanner.next();
                 if (way.equals("1")) {
-                    Decoder.decode(alphabet);
+                    Decoder decoder = new Decoder();
+                    System.out.println("Введите известный Вам ключ декодирования");
+                    decoder.decode(alphabet,scanner.nextInt());
                 }
                 if(way.equals("2")) {
+                    int key = 0;
                     Decoder decoder = new Decoder();
+                    decoder.decode(alphabet,key);
                 }
             }
         }
