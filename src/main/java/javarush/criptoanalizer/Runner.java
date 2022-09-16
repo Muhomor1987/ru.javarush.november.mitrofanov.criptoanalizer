@@ -7,10 +7,7 @@ import javarush.criptoanalizer.utils.Decoder;
 import javarush.criptoanalizer.utils.Encode;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Runner {
@@ -47,12 +44,23 @@ public class Runner {
                     System.out.println("Сейчас система напечатает все доступные варианты ключей для данного алфавита\n Выберерите из возможных вариантов совпадений,\n с наибольшим результатом совпадений");
                     System.out.println("Система предложит наиболее подходящие варианты");
 
-                    HashSet<Integer> k1ey = new HashSet<>();
-                    ArrayList<Integer> value = (ArrayList<Integer>) bruteForce.bruteForceAttack(alphabet).values();
+
+                    Map<Integer,Integer> mapKeyValue = bruteForce.bruteForceAttack(alphabet);
+                    ArrayList<Integer> values = (ArrayList<Integer>) mapKeyValue.values();
+                    Collections.sort(values);
+                    ArrayList<Integer> keyCollection = new ArrayList<Integer>();
+                    ArrayList arrayList = new ArrayList<Integer>();
+                    for (Integer keyValue : mapKeyValue.keySet() ) {
+                        for (int i = values.size()-1; i >=0 ; i--) {
+                            if(mapKeyValue.get(values)== values.get(i)){
+                                keyCollection.add(keyValue);
+                            }
+                        }
+                    }
                     System.out.println("Наиболее подходящие ключи для дешифровки");
-                    System.out.println("Максимальное количесво совпадений с ключом " + value.get(value.size() - 1));
-                    System.out.println("Максимальное количесво совпадений с ключом " + value.get(value.size() - 2));
-                    System.out.println("Максимальное количесво совпадений с ключом " + value.get(value.size() - 3));
+                    System.out.println("Максимальное количесво совпадений с ключом " + keyCollection.get(1));
+                    System.out.println("Максимальное количесво совпадений с ключом " + keyCollection.get(2));
+                    System.out.println("Максимальное количесво совпадений с ключом " + keyCollection.get(3));
 
                     System.out.println("Введите значения наиболее подходящего ключа и посмотретите дешифрованый файл Decode.txt");
                     System.out.println("Если текст расщифрован напишите OK");
@@ -69,8 +77,8 @@ public class Runner {
                         }
                     }
                     System.out.println("Делее выведен список с мением кол-вом сопадений");
-                    for (int i = value.size()-4; i >=0; i--) {
-                        System.out.println(value.get(i));
+                    for (int i = 3; i <keyCollection.size(); i++) {
+                        System.out.print(keyCollection.get(i)+"##");
                     }
                     System.out.println("Пробуйте и проверяйте следующие ключи");
                     while (true) {
@@ -82,6 +90,7 @@ public class Runner {
                                 throw new RuntimeException(e);
                             }
                         }
+                        else break;
                     }
                 }
             }

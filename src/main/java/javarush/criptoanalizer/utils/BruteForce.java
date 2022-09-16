@@ -29,7 +29,7 @@ public class BruteForce {
                     checkString = bufferedReader.readLine();
                     Matcher matcherRU = patternRU.matcher(checkString);
                     Matcher matcherEN = patternEN.matcher(checkString);
-                    Matcher matcher = patternEN.matcher(checkString);
+                    Matcher matcher = pattern.matcher(checkString);
                     while (matcherEN.find()) {
                         if (matcherRU.matches()) {
                             counterMain++;
@@ -39,14 +39,15 @@ public class BruteForce {
                         if (matcherEN.matches()) {
                             counterMain++;
                         }
-                        while (matcher.find()) {
-                            if (matcher.matches()) {
-                                counterSecond++;
-                            }
-                        }
-                        j++;
                     }
+                    while (matcher.find()) {
+                        if (matcher.matches()) {
+                            counterSecond++;
+                        }
+                    }
+                    j++;
                 }
+
                 mapCounterMain.put(i, counterMain);   // Записываем результаты в мапу
                 if (counterMain < 2) {
                     mapCounterMain.put(i, counterSecond);
