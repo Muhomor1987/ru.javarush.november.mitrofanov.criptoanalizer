@@ -45,9 +45,9 @@ public class Runner {
                     System.out.println("Система предложит наиболее подходящие варианты");
 
 
-                    Map<Integer,Integer> mapKeyValue = bruteForce.bruteForceAttack(alphabet);
-                    ArrayList<Integer> values = (ArrayList<Integer>) mapKeyValue.values();
-                    Collections.sort(values);
+                    Map<Integer,Integer> mapKeyValue = bruteForce.bruteForceAttack(alphabet);   //Получаем мапу с наибольшими кол-ом совпадений
+                    ArrayList<Integer> values = (ArrayList<Integer>) mapKeyValue.values();      // и переделываем её в отсортированый список ключей
+                    Collections.sort(values);                                                   //от большого кол-ва совпадений к меньшему
                     ArrayList<Integer> keyCollection = new ArrayList<Integer>();
                     ArrayList arrayList = new ArrayList<Integer>();
                     for (Integer keyValue : mapKeyValue.keySet() ) {
@@ -57,11 +57,11 @@ public class Runner {
                             }
                         }
                     }
-                    System.out.println("Наиболее подходящие ключи для дешифровки");
+                    System.out.println("Наиболее подходящие ключи для дешифровки");     // Выводим три наиболее вероятных ключа
                     System.out.println("Максимальное количесво совпадений с ключом " + keyCollection.get(1));
                     System.out.println("Максимальное количесво совпадений с ключом " + keyCollection.get(2));
                     System.out.println("Максимальное количесво совпадений с ключом " + keyCollection.get(3));
-
+                                                                                        //Предлагаем пользователю их проверить
                     System.out.println("Введите значения наиболее подходящего ключа и посмотретите дешифрованый файл Decode.txt");
                     System.out.println("Если текст расщифрован напишите OK");
                     Decoder decoder = new Decoder();
@@ -76,15 +76,15 @@ public class Runner {
                             }
                         }
                     }
-                    System.out.println("Делее выведен список с мением кол-вом сопадений");
-                    for (int i = 3; i <keyCollection.size(); i++) {
+                    System.out.println("Делее выведен список с мением кол-вом сопадений");  // Если не подходят выводим список верояных ключей в зависимости от частоты совпадений
+                    for (int i = 3; i <keyCollection.size(); i++) {                         // от большего к меньшему числу совпадений
                         System.out.print(keyCollection.get(i)+"##");
                     }
                     System.out.println("Пробуйте и проверяйте следующие ключи");
                     while (true) {
                         if (!keyMax.equals("OK")) {
                             try {
-                                decoder.decode(alphabet, scanner.nextInt());
+                                decoder.decode(alphabet, scanner.nextInt());                //Зациклиаем , выход из цикла "ОК"
                             } catch (IOException e) {
                                 System.out.println("Ключ введён неверно");
                                 throw new RuntimeException(e);
