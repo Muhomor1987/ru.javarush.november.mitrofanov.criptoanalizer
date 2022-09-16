@@ -2,10 +2,14 @@ package javarush.criptoanalizer;
 
 
 import javarush.criptoanalizer.model.Language;
+import javarush.criptoanalizer.utils.BruteForce;
 import javarush.criptoanalizer.utils.Decoder;
 import javarush.criptoanalizer.utils.Encode;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Scanner;
 
 
@@ -36,12 +40,49 @@ public class Runner {
 
                     Decoder decoder = new Decoder();
                     System.out.println("Введите известный Вам ключ декодирования");
-                    decoder.decode(alphabet,scanner.nextInt());
+                    decoder.decode(alphabet, scanner.nextInt());
                 }
-                if(way.equals("2")) {
-                    int key = 0;
+                if (way.equals("2")) {
+                    BruteForce bruteForce = new BruteForce();
+                    System.out.println("Сейчас система напечатает все доступные варианты ключей для данного алфавита\n Выберерите из возможных вариантов совпадений,\n с наибольшим результатом совпадений");
+                    System.out.println("Система предложит наиболее подходящие варианты");
+
+                    HashSet<Integer> k1ey = new HashSet<>();
+                    ArrayList<Integer> value = (ArrayList<Integer>) bruteForce.bruteForceAttack(alphabet).values();
+                    System.out.println("Наиболее подходящие ключи для дешифровки");
+                    System.out.println("Максимальное количесво совпадений с ключом " + value.get(value.size() - 1));
+                    System.out.println("Максимальное количесво совпадений с ключом " + value.get(value.size() - 2));
+                    System.out.println("Максимальное количесво совпадений с ключом " + value.get(value.size() - 3));
+
+                    System.out.println("Введите значения наиболее подходящего ключа и посмотретите дешифрованый файл Decode.txt");
+                    System.out.println("Если текст расщифрован напишите OK");
                     Decoder decoder = new Decoder();
-                    decoder.decode(alphabet,key);
+                    String keyMax = scanner.nextLine();
+                    for (int i = 0; i < 3; i++) {
+                        if (!keyMax.equals("OK")) {
+                            try {
+                                decoder.decode(alphabet, scanner.nextInt());
+                            } catch (IOException e) {
+                                System.out.println("Ключ введён неверно");
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }
+                    System.out.println("Делее выведен список с мением кол-вом сопадений");
+                    for (int i = value.size()-4; i >=0; i--) {
+                        System.out.println(value.get(i));
+                    }
+                    System.out.println("Пробуйте и проверяйте следующие ключи");
+                    while (true) {
+                        if (!keyMax.equals("OK")) {
+                            try {
+                                decoder.decode(alphabet, scanner.nextInt());
+                            } catch (IOException e) {
+                                System.out.println("Ключ введён неверно");
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }
                 }
             }
         }
