@@ -15,7 +15,7 @@ public class Decoder {
 
 
 
-    private void extracted(String alphabet, String pathStr, int key) {
+    public void extracted(String alphabet, String pathStr, int key) {
         try (BufferedReader bufferReader = new BufferedReader(new FileReader(pathStr + "Encode.txt"));
              BufferedWriter bufferWriter = new BufferedWriter(new FileWriter(pathStr + "Decode.txt"))) {
             HashMap<Character, Character> mapAlphabet = new HashMap<>();
@@ -44,7 +44,7 @@ public class Decoder {
         }
     }
 
-    private static String getPath(Scanner scanner) {
+    public String getPath(Scanner scanner) {
         System.out.println("""
                     Укажите путь к текстовым файлам(.txt),
                     Скопируйте нужный файл в данную траекторию и назовите его "Encode.txt",

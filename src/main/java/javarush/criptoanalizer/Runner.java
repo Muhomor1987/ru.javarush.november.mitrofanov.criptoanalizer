@@ -33,6 +33,7 @@ public class Runner {
                         """);
                 String way = scanner.next();
                 if (way.equals("1")) {
+
                     Decoder decoder = new Decoder();
                     System.out.println("Введите известный Вам ключ декодирования");
                     decoder.decode(alphabet,scanner.nextInt());

@@ -14,9 +14,7 @@ public class KeyHandler {
                 if (result < 0) {
                     throw new IOException();
                 }
-                    while (result>alphabet.length()) {
-                        result = result % alphabet.length();
-                }
+                result = result % alphabet.length();
                 attempt = 0;
             } catch (Exception e) {
                 System.out.println("Некорректный ввод данных");
