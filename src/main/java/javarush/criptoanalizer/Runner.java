@@ -85,7 +85,7 @@ public class Runner {
                         if (!keyMax.equals("OK")) {
                             try {
                                 decoder.decode(alphabet, scanner.nextInt());                //Зациклиаем , выход из цикла "ОК"
-                            } catch (IOException e) {
+                            } catch (IllegalStateException e) {
                                 System.out.println("Ключ введён неверно");
                                 throw new RuntimeException(e);
                             }
