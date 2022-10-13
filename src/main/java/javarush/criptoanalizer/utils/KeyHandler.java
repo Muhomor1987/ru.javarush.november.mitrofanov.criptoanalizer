@@ -15,7 +15,7 @@ public class KeyHandler {
                     throw new IOException();
                 }
                 result = result % alphabet.length();
-                attempt = 0;
+                attempt = 0;                            //Программа не крутит 5 раз, а сразу сбрасывает после обработки
             } catch (Exception e) {
                 System.out.println("Некорректный ввод данных");
                 System.out.println("Осталось " + (attempt - 1) + " попытки");
