@@ -8,8 +8,8 @@ public class Decoder {
     public void decode(String alphabet, int key) throws IOException {
         Scanner scanner = new Scanner(System.in);
         String pathStr = getPath(scanner);
-        KeyHandler keyHandler = new KeyHandler();
-        key = keyHandler.getKey(alphabet, key);
+        KeyValue keyValue = new KeyValue();
+        key = keyValue.getKey(alphabet, key);
         extracted(alphabet, pathStr, key);
     }
 
@@ -21,13 +21,13 @@ public class Decoder {
             HashMap<Character, Character> mapAlphabet = new HashMap<>();
   // Заполнение map алфавита для кодировки по Цезарю
 
-            for (int i = 0; i < alphabet.length(); i++) {
-                if ((i + key < alphabet.length())) {
-                    mapAlphabet.put(alphabet.charAt(i + key), alphabet.charAt(i));
-                } else {
-                    mapAlphabet.put(alphabet.charAt((i + key) - alphabet.length()), alphabet.charAt(i));
+                for (int i = 0; i < alphabet.length(); i++) {
+                    if ((i + key < alphabet.length())) {
+                        mapAlphabet.put(alphabet.charAt(i + key), alphabet.charAt(i));
+                    } else {
+                        mapAlphabet.put(alphabet.charAt((i + key) - alphabet.length()), alphabet.charAt(i));
+                    }
                 }
-            }
             //ЗАПИСЫВАЕМ В СТРИГ БИЛДЕР значения буфера считаного текста и сразу обрабатываем строку и записываем в файл
             StringBuilder stringBuilder = new StringBuilder();
             while (bufferReader.ready()) {

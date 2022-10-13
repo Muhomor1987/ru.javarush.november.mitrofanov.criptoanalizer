@@ -1,10 +1,8 @@
 package javarush.criptoanalizer;
 
 
-import javarush.criptoanalizer.model.Language;
-import javarush.criptoanalizer.utils.BruteForce;
-import javarush.criptoanalizer.utils.Decoder;
-import javarush.criptoanalizer.utils.Encode;
+import javarush.criptoanalizer.model.LanguageMap;
+import javarush.criptoanalizer.utils.*;
 
 import java.io.*;
 import java.util.*;
@@ -12,6 +10,7 @@ import java.util.*;
 
 public class Runner {
     public static void main(String[] args) throws IOException {
+        Menu menu = new Menu();
         boolean toWork = true;
         while (toWork) {
             Scanner scanner = new Scanner(System.in);
@@ -19,7 +18,7 @@ public class Runner {
             System.out.println("Нажмите 2 если хотите раскодировать файл");
             System.out.println("Нажмите 3 если хотите выйти из программы");
             String menu = scanner.next();
-            String alphabet = new Language().getAlphabet();   // Запрос выбора алфавита
+            String alphabet = new LanguageMap().getAlphabet();   // Запрос выбора алфавита
             if (menu.equals("1")) {
                 Encode encode = new Encode();
                 encode.encode(alphabet);

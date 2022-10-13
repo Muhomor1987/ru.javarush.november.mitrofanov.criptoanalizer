@@ -11,8 +11,8 @@ public class Encode {
         //Decoder
         System.out.println("Введите число для шифорвания");
         int key = scanner.nextInt();
-        KeyHandler keyHandler = new KeyHandler();
-        key = keyHandler.getKey(alphabet, key);
+        KeyValue keyValue = new KeyValue();
+        key = keyValue.getKey(alphabet, key);
         encode(alphabet, pathStr, key);
 
     }

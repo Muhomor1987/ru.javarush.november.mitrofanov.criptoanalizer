@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BruteForce {
-    public HashMap<Integer, Integer> bruteForceAttack(String alphabet) throws IOException {
+    public HashMap<Integer, Integer> bruteForceAttack(FileInitializer fileResult, String alphabet) throws IOException {
         Decoder decoder = new Decoder();
         Scanner scanner = new Scanner(System.in);
         String pathStr = decoder.getPath(scanner);
