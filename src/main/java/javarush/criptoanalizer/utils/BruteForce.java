@@ -62,23 +62,31 @@ public class BruteForce {
     public void bruteForceAttack(Language language, FileInitializer filesForWork) throws IOException {
         Scanner scanner = new Scanner(System.in);
         Map<Integer, Integer> mapKeyValue = createMapCounterMatches(language, filesForWork);   //Получаем мапу с кол-ом совпадений
-        ArrayList<Integer> values = (ArrayList<Integer>) mapKeyValue.values();      // и переделываем её в отсортированый список ключей
-        Collections.sort(values);                                                   // от большого кол-ва совпадений к меньшему
+
+        ArrayList<Integer> values = new ArrayList<Integer>();
+        for (Integer key: mapKeyValue.keySet()
+        ) {
+            values.add(mapKeyValue.get(key));
+        }
+
+        Collections.sort(values);                                                            // от большего кол-ва совпадений к меньшему
+        Collections.reverse(values);
+
         ArrayList<Integer> keyCollection = new ArrayList<>();                       // Создаём новую колекцию для отсортерованых ключей от большего числа совпадений к меньшему
-        for (
-                Integer keyValue : mapKeyValue.keySet()) {
-            for (int i = values.size() - 1; i >= 0; i--) {
-                if (mapKeyValue.get(values) == values.get(i)) {
-                    keyCollection.add(keyValue);                                    //Заполняем её сравнивая по результам совпадений. Получаем список значейний нужного ключа
+
+        for (int value : values) {
+            for (int keyValue : mapKeyValue.keySet()) {
+                if(value==mapKeyValue.get(keyValue)) {
+                    keyCollection.add(keyValue);
                 }
             }
         }
         System.out.println("Сейчас система напечатает все доступные варианты ключей для данного алфавита\n Выберерите из возможных вариантов совпадений,\n с наибольшим результатом совпадений");
         System.out.println("Система предложит наиболее подходящие варианты");
         System.out.println("Наиболее подходящие ключи для дешифровки");     // Выводим три наиболее вероятных ключа
+        System.out.println("Максимальное количесво совпадений с ключом " + keyCollection.get(0));
         System.out.println("Максимальное количесво совпадений с ключом " + keyCollection.get(1));
         System.out.println("Максимальное количесво совпадений с ключом " + keyCollection.get(2));
-        System.out.println("Максимальное количесво совпадений с ключом " + keyCollection.get(3));
         //Предлагаем пользователю их проверить
         System.out.println("Введите значения наиболее подходящего ключа и посмотретите дешифрованый файл result.txt");
         System.out.println("Если текст расщифрован напишите OK");

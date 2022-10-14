@@ -26,46 +26,17 @@ public class Language {
         while (toWork) {
 
             try {
-                charts = switch (scanner.nextInt()) {
-                    case 1 -> en;
-                    case 2 -> rus;
-                    case 3 -> uk;
-                    case 4 -> by;
+                switch (scanner.nextInt()) {
+                    case 1 -> charts = en;
+                    case 2 -> charts = rus;
+                    case 3 -> charts = uk;
+                    case 4 -> charts = by;
                     default -> throw new IllegalStateException("Unexpected value");
                 };
-            } catch (RuntimeException e) {
+            } catch (IllegalStateException e) {
                 System.out.println("Введен неверный номер языка");
             }
             toWork = false;
         }
     }
 }
-
-
-
-
-   /* public String getAlphabet(int num) {
-        boolean choseLg = true;
-        String language = null;
-        System.out.println("Выберите язык из списка, укажите его номер\n" +
-                "1 - Английский\n" +
-                "2 - Русский\n" +
-                "3 - Украинский\n" +
-                "4 - Белоруский\n");
-
-        while (choseLg) {
-            try {
-                language = switch (num) {
-                    case 1 -> en;
-                    case 2 -> rus;
-                    case 3 -> uk;
-                    case 4 -> by;
-                    default -> throw new IllegalStateException("Unexpected value: " + num);
-                };
-            } catch (RuntimeException e) {
-                System.out.println("Введено неверное значение");
-            }
-            choseLg=false;
-        }
-        return language;
-    }*/
