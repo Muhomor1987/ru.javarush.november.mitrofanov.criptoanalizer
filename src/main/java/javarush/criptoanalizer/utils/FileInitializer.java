@@ -19,8 +19,8 @@ public class FileInitializer {
                     System.out.println("Укажите имя файла");
                     String nameFile = scanner.nextLine();
                     value = false;
-                    fileData = new File(pathStr.toUri() + nameFile);
-                    fileResult = new File(pathStr.toUri() + "result.txt");
+                    fileData = new File(pathStr + nameFile);
+                    fileResult = new File(pathStr + "result.txt");
                 } else throw new RuntimeException();
             } catch (Exception e) {
                 System.out.println("Путь указан неверно");
