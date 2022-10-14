@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Menu {
-    public void Menu(FileInitializer filesForWork) {
+    public void startMenu(FileInitializer filesForWork) {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Нажмите 1 если хотите закодировать файл по методу цезаря");

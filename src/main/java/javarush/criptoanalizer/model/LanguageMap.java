@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class LanguageMap {
-    private String charts;
+    public String charts;
     public HashMap<Character, Character> encodeAlphabetMap = new HashMap<Character, Character>();
     public HashMap<Character, Character> decodeAlphabetMap = new HashMap<Character, Character>();
     private final String en = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ(.,””:-!? )";

@@ -9,8 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BruteForce {
-    public HashMap<Integer, Integer> bruteForceAttack(FileInitializer fileResult, String alphabet) throws IOException {
-        Decoder decoder = new Decoder();
+    public HashMap<Integer, Integer> bruteForceAttack(FileInitializer fileForWork) throws IOException {
+        DecoderEncoder decoder = new DecoderEncoder();
         Scanner scanner = new Scanner(System.in);
         String pathStr = decoder.getPath(scanner);
         String checkString = null;
@@ -19,7 +19,7 @@ public class BruteForce {
         Pattern patternRU = Pattern.compile("[а-я]\\.\s[А-Я]");     //Вводим парамтры поиска сопадений
         Pattern pattern = Pattern.compile("\\.\s");                 // для дешт=ифрованного текста, на предмет мал.буква точка пробел большая буква
         HashMap<Integer, Integer> mapCounterMain = new HashMap<>();       //Создаём мапу с значениями ключа использованого для дешифровки от 1 до размера алфавита -1
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(pathStr + "Encode.txt"))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileForWork.fileData))) {
             for (int i = 0; i < alphabet.length(); i++) {
                 decoder.extracted(alphabet, pathStr, i);            //Используем метод декодирования со значением ключа равного i
                 int counterMain = 0;

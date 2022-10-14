@@ -8,7 +8,7 @@ public class FileInitializer {
     File fileData = null;
     File fileResult = null;
 
-    public FileInitializer() {
+    public void fileInitializer() {
         Scanner scanner = new Scanner(System.in);
         boolean value = true;
         while (value) {

@@ -10,7 +10,10 @@ import java.util.*;
 
 public class Runner {
     public static void main(String[] args) throws IOException {
+        FileInitializer filesForWork = new FileInitializer();
+        filesForWork.fileInitializer();
         Menu menu = new Menu();
+        menu.startMenu(filesForWork);
         boolean toWork = true;
         while (toWork) {
             Scanner scanner = new Scanner(System.in);
