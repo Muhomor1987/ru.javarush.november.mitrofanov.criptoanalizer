@@ -19,7 +19,7 @@ public class BruteForce {
 
         //Создаём мапу с значениями ключа использованого для дешифровки от 1 до размера алфавита -1
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filesForWork.fileResult))) {   //??попытка открыт поток
-            for (int i = 0; i < language.charts.length(); i++) {
+            for (int i = 1; i < language.charts.length(); i++) {
                 AlphabetMap alphabetMap = new AlphabetMap(language.charts, i);
                 decoder.decode_encode(alphabetMap.decodeAlphabetMap, filesForWork);
                 //Используем метод декодирования со значением ключа равного i

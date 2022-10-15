@@ -4,9 +4,7 @@ import javarush.criptoanalizer.model.AlphabetMap;
 import javarush.criptoanalizer.model.Language;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
+
 import java.util.Scanner;
 
 public class Menu {
